@@ -19,13 +19,13 @@ const StyledTabs = styled(TabsPrimitive.Root, {
 const StyledList = styled(TabsPrimitive.List, {
   flexShrink: 0,
   display: "flex",
-  borderBottom: `1px solid ${mauve.mauve6}`,
+  borderBottom: `1px solid $border`,
 });
 
 const StyledTrigger = styled(TabsPrimitive.Trigger, {
   all: "unset",
   fontFamily: "inherit",
-  backgroundColor: "white",
+  background: "$background",
   padding: "0 20px",
   height: 45,
   flex: 1,
@@ -37,16 +37,16 @@ const StyledTrigger = styled(TabsPrimitive.Trigger, {
   color: mauve.mauve11,
   userSelect: "none",
 
-  "&:hover": { color: blue.blue11, background: mauve.mauve2 },
+  "&:hover": { color: "$primary", background: "$hover" },
   '&[data-state="active"]': {
-    color: blue.blue10,
+    color: "$primary",
     boxShadow: "inset 0 -1px 0 0 currentColor, 0 1px 0 0 currentColor",
   },
 });
 
 const StyledContent = styled(TabsPrimitive.Content, {
   flexGrow: 1,
-  backgroundColor: "white",
+  background: "$background",
   outline: "none",
 });
 
@@ -69,25 +69,44 @@ export const NavBar: FC = () => {
         <TabsContent value="projects">
           <Box>
             <Card
-              title="Project 1"
-              date="Feb 7"
-              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+              title="Collectr"
+              link="https://collectr.art"
+              date=""
+              description="A new experience for displaying and curating your NFTs."
+              tags={["NextJs", "Solidity", "NFTs", "Three.JS"]}
             />
             <Card
-              title="Project 1"
-              date="Feb 7"
-              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+              title="Diamond DAO: Chainverse"
+              link="https://diamonddao.xyz"
+              date=""
+              description="Building a platform to identify emerging Web3 Communities/DAOs"
+              tags={["Nextjs", "ethers"]}
+            />
+            <Card
+              title="Kong Land: V2 Mobile App"
+              link="https://kong.land"
+              date=""
+              description="Built out v2 of Kong's new mobile app which includes a NFT reveal mechanism"
+              tags={["React Native", "WalletConnect", "ethers"]}
+            />
+            <Card
+              title="Playground"
+              link="https://playgroundshops.xyz"
+              date=""
+              description="Incubating Shopify Apps that brings joys to merchants"
+              tags={["NextJS", "ShopifyAPI", "Primsa"]}
             />
           </Box>
         </TabsContent>
         <TabsContent value="writings">
           <Box
             css={{
+              minHeight: "200px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               height: "100%",
-              mt: "50px",
+              pt: "20px",
             }}
           >
             <Box>Coming Soon</Box>
@@ -96,24 +115,26 @@ export const NavBar: FC = () => {
         <TabsContent value="notes">
           <Box
             css={{
+              minHeight: "200px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               height: "100%",
-              mt: "50px",
+              pt: "20px",
             }}
           >
             <Box>Coming Soon</Box>
-          </Box>{" "}
+          </Box>
         </TabsContent>
         <TabsContent value="likes">
           <Box
             css={{
+              minHeight: "200px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               height: "100%",
-              mt: "50px",
+              pt: "20px",
             }}
           >
             <Box>Coming Soon</Box>

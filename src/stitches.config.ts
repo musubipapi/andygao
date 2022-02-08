@@ -1,14 +1,18 @@
 import { createStitches } from "@stitches/react";
+import { blue, mauve, mauveDark } from "@radix-ui/colors";
 
-export const { globalCss, styled, getCssText } = createStitches({
+export const { globalCss, styled, getCssText, createTheme } = createStitches({
   prefix: "ricepapi",
   theme: {
     fonts: {
       system: "system-ui",
     },
     colors: {
-      hiContrast: "hsl(206,10%,5%)",
-      loContrast: "white",
+      primary: mauveDark.mauve1,
+      accent: blue.blue12,
+      background: mauve.mauve1,
+      border: mauve.mauve6,
+      hover: mauve.mauve2,
     },
     fontSizes: {
       1: "13px",
@@ -87,5 +91,14 @@ export const { globalCss, styled, getCssText } = createStitches({
     br: (value) => ({
       borderRadius: value,
     }),
+  },
+});
+
+export const darkTheme = createTheme({
+  colors: {
+    primary: mauve.mauve1,
+    background: mauveDark.mauve1,
+    hover: mauveDark.mauve2,
+    border: mauveDark.mauve6,
   },
 });

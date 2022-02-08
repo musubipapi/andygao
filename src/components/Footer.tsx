@@ -1,6 +1,6 @@
 import { styled } from "@stitches/react";
 import { red } from "@radix-ui/colors";
-import React from "react";
+import React, { FC } from "react";
 
 type Props = {};
 
@@ -11,7 +11,7 @@ const StyledFooter = styled("div", {
   height: "50px",
 });
 
-export const Footer = (props: Props) => {
+export const Footer: FC = () => {
   return (
     <StyledFooter>
       made with

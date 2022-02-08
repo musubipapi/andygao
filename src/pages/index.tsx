@@ -1,37 +1,67 @@
 // pages/index.js
-import { Box, Text, Image, Container, NavBar, Footer } from "@/components";
+import {
+  Box,
+  Text,
+  Image,
+  Container,
+  NavBar,
+  Footer,
+  ToggleSwitchButton,
+} from "@/components";
 import Link from "next/link";
-
+import { whiteA } from "@radix-ui/colors";
+import { useTheme } from "next-themes";
 export default function Home() {
+  const { resolvedTheme } = useTheme();
   return (
     <Container>
-      <Box className="body" css={{ position: "relative", minHeight: "100vh" }}>
+      <Box
+        className="body"
+        css={{
+          position: "relative",
+          minHeight: "100vh",
+          background: "$background",
+        }}
+      >
         <Box
           css={{
             position: "sticky",
-            background: "white",
+            background: "$background",
             top: "0px",
             zIndex: 2,
             height: "50px",
             opacity: "97%",
             width: "100%",
-            pl: "10px",
+            px: "10px",
             fontWeight: "bold",
           }}
         >
-          <Box css={{ display: "flex", alignItems: "center" }}>
+          <Box
+            css={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
             <Text css={{ pl: "20px", pt: "15px" }}>ricepapi | andy gao</Text>
+            <Box css={{ pr: "20px", pt: "15px" }}>
+              <ToggleSwitchButton />
+            </Box>
           </Box>
         </Box>
         <Box>
           <Image
-            src="./header_bg.jpeg"
+            src={
+              resolvedTheme === "light"
+                ? "./header_bg.jpeg"
+                : "./header_bg_dark.jpeg"
+            }
             css={{
               background: "black",
-              height: "250px",
+              height: "200px",
               width: "100%",
               objectFit: "cover",
-              objectPosition: "top",
+              objectPosition: resolvedTheme === "light" ? "top" : "center",
             }}
             alt="bg"
           />
@@ -47,19 +77,24 @@ export default function Home() {
           src="./prof_pic.jpeg"
           alt="prof-pic"
         />
-        <Box css={{ mt: "70px", pl: "20px" }}>
-          <Text size="4" css={{ fontWeight: "bold" }}>
+        <Box css={{ mt: "80px", pl: "20px" }}>
+          <Text size="3" css={{ fontWeight: "bold" }}>
             ricepapi
           </Text>
-          <Text size="1" css={{ color: "rgb(83, 100, 113)" }}>
+          <Text size="2" css={{ color: "rgb(83, 100, 113)" }}>
             @0xRicepapi
           </Text>
 
           <Text size="2" css={{ mt: "10px", maxWidth: "600px" }}>
-            Building things, shipping code, having fun. <br />
+            {"Hi I'm Andy (aka ricepapi)!"} <br /> <br />
+            {
+              "I'm intentionally unemployed so I can focus on building things, shipping code, reading books, and having fun. In my free time, I enjoy exploring the great outdoors."
+            }
             <br />
-            Currently interested in crypto and its application across various
-            industries.
+            <br />
+            {
+              "Currently interested in crypto and its application across various industries."
+            }
           </Text>
           <Box
             css={{
@@ -69,7 +104,7 @@ export default function Home() {
               color: "rgb(83, 100, 113)",
             }}
           >
-            <Box css={{ display: "flex", mr: "10px" }}>
+            <Box css={{ display: "flex", mr: "20px" }}>
               <svg
                 width="20px"
                 height="20px"

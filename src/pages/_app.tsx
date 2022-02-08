@@ -1,7 +1,8 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { globalCss } from "@/stitches.config";
+import { darkTheme, globalCss } from "@/stitches.config";
 import { blueA } from "@radix-ui/colors";
+import { ThemeProvider } from "next-themes";
 const globalStyles = globalCss({
   /* width */
   "::-webkit-scrollbar": {
@@ -19,7 +20,19 @@ const globalStyles = globalCss({
 
 function MyApp({ Component, pageProps }: AppProps) {
   globalStyles();
-  return <Component {...pageProps} />;
+
+  return (
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="light"
+      value={{
+        dark: darkTheme.className,
+        light: "light",
+      }}
+    >
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
 }
 
 export default MyApp;
