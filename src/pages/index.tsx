@@ -28,7 +28,7 @@ export default function Home() {
             src="./header_bg.jpeg"
             css={{
               background: "black",
-              height: "200px",
+              height: "250px",
               width: "100%",
               objectFit: "cover",
               objectPosition: "top",
