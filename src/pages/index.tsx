@@ -52,16 +52,16 @@ export default function Home() {
         <Box>
           <Image
             src={
-              resolvedTheme === "light"
-                ? "./header_bg.jpeg"
-                : "./header_bg_dark.jpeg"
+              resolvedTheme === "dark"
+                ? "./header_bg_dark.jpeg"
+                : "./header_bg.jpeg"
             }
             css={{
               background: "black",
               height: "200px",
               width: "100%",
               objectFit: "cover",
-              objectPosition: resolvedTheme === "light" ? "top" : "center",
+              objectPosition: resolvedTheme === "dark" ? "center" : "top",
             }}
             alt="bg"
           />
