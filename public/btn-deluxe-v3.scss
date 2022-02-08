@@ -1,0 +1,213 @@
+/*
+btn-deluxe by hnldesign - https://www.hnldesign.nl
+button CSS based on work by Josh Comeau - https://www.joshwcomeau.com/animation/3d-button/
+v 3.2.1
+new: gradient style
+ */
+
+$but-deluxe-def-txt: #FFF !default;                       //text-color for the button
+$but-deluxe-def-hue: 334deg !default;                     //hue for the base color (used in HSL colors)
+$but-deluxe-def-sat: 100% !default;                       //saturation for the base color (used in HSL colors)
+$but-deluxe-def-bri: 47% !default;                        //lightness for the base color (used in HSL colors)
+
+$but-deluxe-alt-hue: $but-deluxe-def-hue + 35 !default;   //hue for the secondary color (used in gradient)
+$but-deluxe-alt-sat: $but-deluxe-def-sat * .8 !default;   //saturation for the secondary color (used in gradient)
+$but-deluxe-alt-bri: $but-deluxe-def-bri * 1.3 !default;  //lightness for the secondary color (used in gradient)
+
+$but-deluxe-shade-angle: 15deg !default;                  //angle for button gradient
+
+$btn-deluxe-round: 10px !default;                         //border rounding
+$btn-deluxe-padding: 10px 30px !default;                  //padding
+
+$btn-deluxe-up: 5px !default;                             //height of the non-depressed 'up' state
+$btn-deluxe-hover: 3px !default;                          //height added to the 'up' state's height if hovered (Important: on non-hover devices, this value is added to the basic 'up' state)
+$btn-deluxe-depressed: 2px !default;                      //height of the depressed 'down' state
+$btn-deluxe-switchable-depressed: 2px !default;           //'sink depth' of the switchable 'active' state
+
+$btn-deluxe-shadowsize: 3px !default;                     //height of the shadow
+$btn-deluxe-shadowsize-hover: 5px !default;               //height of the shadow when hovered
+$btn-deluxe-shadowblur: 4px !default;                     //shadow blur amount
+$btn-deluxe-shadowspread: -1px !default;                  //shadow spread amount (Note; negative to prevent shadow clipping)
+
+$btn-deluxe-trans-duration: 250ms !default;               //transition duration for button animation
+$btn-deluxe-trans-delay-fast: 20ms !default;              //transition duration for fast button animations
+$but-deluxe-hover-brightness: 105% !default;              //brightness increase on hover
+
+$btn-deluxe-bezier-one: cubic-bezier(.3, .7, .4, 1) !default;   //transition easing function
+
+/* if btn deluxe is included in a Bootstrap project, but not the required css (btn-deluxe.bs.css),
+make sure btn-deluxe's spans don't mess up existing Bootstrap buttons
+ */
+.btn {
+  > span.btn-deluxe-front,> span.btn-deluxe-edge {
+    display: contents;
+  }
+}
+
+
+/* foundation*/
+.btn-deluxe {
+  --but-deluxe-txt: #{$but-deluxe-def-txt};
+  --but-deluxe-hue: #{$but-deluxe-def-hue};
+  --but-deluxe-sat: #{$but-deluxe-def-sat};
+  --but-deluxe-bri: #{$but-deluxe-def-bri};
+  --but-deluxe-alt-hue: #{$but-deluxe-alt-hue};
+  --but-deluxe-alt-sat: #{$but-deluxe-alt-sat};
+  --but-deluxe-alt-bri: #{$but-deluxe-alt-bri};
+  --but-deluxe-shade-angle: #{$but-deluxe-shade-angle};
+  --btn-deluxe-trans-duration: #{$btn-deluxe-trans-duration};
+  --btn-deluxe-round: #{$btn-deluxe-round};
+  --btn-deluxe-up: #{$btn-deluxe-up};
+  --btn-deluxe-shadowsize: #{$btn-deluxe-shadowsize};
+
+  position: relative;
+
+  padding: $btn-deluxe-hover 0 var(--btn-deluxe-up) 0;
+  border-radius: var(--btn-deluxe-round);
+
+  outline-offset: 4px;
+  cursor: pointer;
+  border: none;
+  background: transparent !important;
+  overflow: hidden;
+
+  transform: translateZ(0); /* fixes radius overflow bug @ ios safari: https://stackoverflow.com/questions/49066011/overflow-hidden-with-border-radius-not-working-on-safari */
+
+  transition-property: filter, box-shadow;
+  transition-duration: var(--btn-deluxe-trans-duration), var(--btn-deluxe-trans-duration);
+  transition-timing-function: ease, ease;
+
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none; /* disable selection/Copy of UIWebView */
+  -webkit-touch-callout: none; /* disable the IOS popup when long-press on a link */
+
+  /* use negative spread to prevent shadow showing from under the button's top-side */
+  box-shadow: 0 var(--btn-deluxe-shadowsize) $btn-deluxe-shadowblur $btn-deluxe-shadowspread hsl(var(--but-deluxe-hue, 334deg) var(--but-deluxe-sat, 100%) calc(var(--but-deluxe-bri, 47%) * .4) / 22%);
+
+  /* inner spans */
+  & > .btn-deluxe-edge {
+    box-sizing: border-box;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--btn-deluxe-round);
+    background: linear-gradient(
+                    to left,
+                    hsl(var(--but-deluxe-hue, 216deg) var(--but-deluxe-sat, 100%) calc(var(--but-deluxe-bri, 47%) / 2)) 0%,
+                    hsl(var(--but-deluxe-hue, 216deg) var(--but-deluxe-sat, 100%) calc(var(--but-deluxe-bri, 47%) / 1.5)) 8%,
+                    hsl(var(--but-deluxe-hue, 216deg) var(--but-deluxe-sat, 100%) calc(var(--but-deluxe-bri, 47%) / 1.5)) 92%,
+                    hsl(var(--but-deluxe-hue, 216deg) var(--but-deluxe-sat, 100%) calc(var(--but-deluxe-bri, 47%) / 2)) 100%
+    );
+    margin-top: calc(var(--btn-deluxe-up) + #{$btn-deluxe-depressed});
+  }
+
+  & > .btn-deluxe-front {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    z-index: 3;
+
+    width: 100%;
+    height: 100%;
+    padding: $btn-deluxe-padding;
+    border-radius: var(--btn-deluxe-round);
+
+    color: var(--but-deluxe-txt);
+    background: hsl(var(--but-deluxe-hue) var(--but-deluxe-sat) var(--but-deluxe-bri));
+    background-image: linear-gradient(
+                    var(--but-deluxe-shade-angle),
+                    hsl(var(--but-deluxe-hue) var(--but-deluxe-sat) var(--but-deluxe-bri)) 0%,
+                    hsl(var(--but-deluxe-alt-hue) var(--but-deluxe-alt-sat) var(--but-deluxe-alt-bri)) 100%
+    );
+
+    will-change: transform;
+    transition-timing-function: $btn-deluxe-bezier-one;
+    transition: transform var(--btn-deluxe-trans-duration) $btn-deluxe-bezier-one;
+  }
+
+  /* states */
+  /* hover-enabled-devices */
+  @media all and (hover: hover) {
+    &:hover {
+      background: transparent;
+      filter: brightness($but-deluxe-hover-brightness);
+      --btn-deluxe-trans-duration: #{$btn-deluxe-trans-duration};
+      --btn-deluxe-shadowsize: #{$btn-deluxe-shadowsize-hover};
+    }
+
+    & > .btn-deluxe-front {
+      transition: transform var(--btn-deluxe-trans-duration);
+    }
+
+    &:hover > .btn-deluxe-front {
+      transform: translateY(0px - $btn-deluxe-hover);
+    }
+  }
+  @media not all and (hover: hover) {
+    & {
+      /* on non-hover (mobile/touch) devices, there is no 'lift' when hovering the button, so the depression
+      when pressing the button is relatively shorter. To achieve the same 'feel' and satisfaction of pressing it,
+      we'll set the height of a button on a non-hover device slightly higher (unless $btn-deluxe-hover is lowered) */
+      --btn-deluxe-up: calc(min(#{$btn-deluxe-hover}, 2px) + #{$btn-deluxe-up});
+    }
+  }
+  &:focus:not(:focus-visible) {
+    box-shadow: 0 var(--btn-deluxe-shadowsize) $btn-deluxe-shadowblur $btn-deluxe-shadowspread hsl(var(--but-deluxe-hue, 334deg) var(--but-deluxe-sat, 100%) calc(var(--but-deluxe-bri, 47%) * .4) / 22%);
+  }
+  &:active {
+    --btn-deluxe-shadowblur: 1px;
+    --btn-deluxe-shadowsize: #{$btn-deluxe-depressed};
+  }
+  &:active > .btn-deluxe-front {
+    transform: translateY(calc(var(--btn-deluxe-up) - #{$btn-deluxe-depressed}));
+    --btn-deluxe-trans-duration: #{$btn-deluxe-trans-delay-fast};
+  }
+  &:focus:not(:focus-visible) {
+    background: transparent;
+    outline: none;
+    border: 0 none;
+  }
+  &.disabled > .btn-deluxe-front,
+  &:disabled > .btn-deluxe-front,
+  &[disabled] > .btn-deluxe-front {
+    /* disabled */
+    transform: translateY(3px);
+  }
+
+}
+
+/* switchable - stays depressed */
+.btn-deluxe-switchable {
+  @extend .btn-deluxe;
+}
+
+.btn-deluxe-switchable.active,
+.btn-deluxe-switchable.active:focus,
+.btn-deluxe-switchable.active:active,
+.btn-deluxe-switchable:active {
+  box-shadow: none;
+}
+
+.btn-deluxe-switchable.active > .btn-deluxe-front {
+  transform: translateY(calc(var(--btn-deluxe-up) + #{$btn-deluxe-switchable-depressed}));
+}
+
+.btn-deluxe-switchable:active > .btn-deluxe-front {
+  --btn-deluxe-trans-duration: 60ms;
+  transform: translateY(calc(var(--btn-deluxe-up) + #{$btn-deluxe-switchable-depressed} + max(#{$btn-deluxe-hover}, 3px)));
+}
+
+.btn-deluxe-switchable.active:focus > .btn-deluxe-front,
+.btn-deluxe-switchable:active > .btn-deluxe-front,
+.btn-deluxe-switchable.active > .btn-deluxe-front {
+  box-shadow: inset 0 3px 6px hsl(0deg 0% 0% / 20%);
+}
+
+.btn-deluxe-switchable.active:focus > .btn-deluxe-edge,
+.btn-deluxe-switchable:active > .btn-deluxe-edge,
+.btn-deluxe-switchable.active > .btn-deluxe-edge {
+  --but-deluxe-bri: 40%;
+}
