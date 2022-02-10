@@ -73,28 +73,28 @@ export const NavBar: FC = () => {
               link="https://collectr.art"
               date=""
               description="A new experience for displaying and curating your NFTs."
-              tags={["NextJs", "Solidity", "NFTs", "Three.JS"]}
+              // tags={["NextJS", "Solidity", "NFTs", "Three.JS"]}
             />
             <Card
               title="Diamond DAO: Chainverse"
               link="https://diamonddao.xyz"
               date=""
               description="Building a platform to identify emerging Web3 Communities/DAOs"
-              tags={["Nextjs", "ethers"]}
+              // tags={["NextJS", "ethers"]}
             />
             <Card
               title="Kong Land: V2 Mobile App"
               link="https://kong.land"
               date=""
               description="Built out v2 of Kong's new mobile app which includes a NFT reveal mechanism"
-              tags={["React Native", "WalletConnect", "ethers"]}
+              // tags={["React Native", "WalletConnect", "ethers"]}
             />
             <Card
               title="Playground"
               link="https://playgroundshops.xyz"
               date=""
               description="Incubating Shopify Apps that brings joys to merchants"
-              tags={["NextJS", "ShopifyAPI", "Primsa"]}
+              // tags={["NextJS", "ShopifyAPI", "Primsa"]}
             />
           </Box>
         </TabsContent>
