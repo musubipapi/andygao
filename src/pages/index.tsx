@@ -50,21 +50,23 @@ export default function Home() {
           </Box>
         </Box>
         <Box>
-          <Image
-            src={
-              resolvedTheme === "dark"
-                ? "./header_bg_dark.jpeg"
-                : "./header_bg.jpeg"
-            }
-            css={{
-              background: "black",
-              height: "200px",
-              width: "100%",
-              objectFit: "cover",
-              objectPosition: resolvedTheme === "dark" ? "center" : "top",
-            }}
-            alt="bg"
-          />
+          {resolvedTheme && (
+            <Image
+              src={
+                resolvedTheme === "dark"
+                  ? "./header_bg_dark.jpeg"
+                  : "./header_bg.jpeg"
+              }
+              css={{
+                background: "black",
+                height: "200px",
+                width: "100%",
+                objectFit: "cover",
+                objectPosition: resolvedTheme === "dark" ? "center" : "top",
+              }}
+              alt="bg"
+            />
+          )}
         </Box>
         <Image
           css={{
