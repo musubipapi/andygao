@@ -91,7 +91,7 @@ export const NavBar: FC = () => {
             />
             <Card
               title="Playground"
-              link="https://playgroundshops.xyz"
+              link="https://playgroundshops.com"
               date=""
               description="Incubating Shopify Apps that brings joys to merchants"
               // tags={["NextJS", "ShopifyAPI", "Primsa"]}
