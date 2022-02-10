@@ -63,7 +63,7 @@ export const NavBar: FC = () => {
         <TabsList aria-label="Manage your account">
           <TabsTrigger value="projects">Projects</TabsTrigger>
           <TabsTrigger value="writings">Writings</TabsTrigger>
-          <TabsTrigger value="notes">Notes</TabsTrigger>
+          <TabsTrigger value="notes">Media</TabsTrigger>
           <TabsTrigger value="likes">Likes</TabsTrigger>
         </TabsList>
         <TabsContent value="projects">
