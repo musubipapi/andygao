@@ -11,8 +11,12 @@ import {
 import Link from "next/link";
 import { whiteA } from "@radix-ui/colors";
 import { useTheme } from "next-themes";
+import { useSpring, animated } from "react-spring";
 export default function Home() {
   const { resolvedTheme } = useTheme();
+
+  const { opacity } = useSpring({ opacity: resolvedTheme === "dark" ? 1 : 0 });
+  const AnimatedImage = animated(Image);
   return (
     <Container>
       <Box
@@ -49,24 +53,34 @@ export default function Home() {
             </Box>
           </Box>
         </Box>
-        <Box>
-          {resolvedTheme && (
-            <Image
-              src={
-                resolvedTheme === "dark"
-                  ? "./header_bg_dark.jpeg"
-                  : "./header_bg.jpeg"
-              }
-              css={{
-                background: "black",
-                height: "200px",
-                width: "100%",
-                objectFit: "cover",
-                objectPosition: resolvedTheme === "dark" ? "center" : "top",
-              }}
-              alt="bg"
-            />
-          )}
+        <Box css={{ position: "relative", height: "200px" }}>
+          <AnimatedImage
+            src={"./header_bg_dark.jpeg"}
+            style={{ opacity }}
+            css={{
+              position: "absolute",
+              background: "black",
+              height: "200px",
+              width: "100%",
+              objectFit: "cover",
+              objectPosition: "top",
+            }}
+            alt="bg"
+          />
+
+          <AnimatedImage
+            src={"./header_bg.jpeg"}
+            style={{ opacity: opacity.to({ range: [0, 1], output: [1, 0] }) }}
+            css={{
+              position: "absolute",
+              background: "black",
+              height: "200px",
+              width: "100%",
+              objectFit: "cover",
+              objectPosition: "top",
+            }}
+            alt="bg"
+          />
         </Box>
         <Image
           css={{
